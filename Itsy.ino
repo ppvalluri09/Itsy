@@ -2,14 +2,14 @@
 #include"wheels.h"
 
 //Sensor s1 = Sensor(13, 12);
-Wheel l_wheel = Wheel(32, 2, 3, 4, 5);
-Wheel r_wheel = Wheel(32, 6, 7, 8, 9);
+Wheel l_wheel = Wheel(32, 2, 4, 3, 5);
+Wheel r_wheel = Wheel(32, 6, 8, 7, 9);
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  l_wheel.setSpeed(500);
-  r_wheel.setSpeed(500);
+  l_wheel.setSpeed(800);
+  r_wheel.setSpeed(800);
 }
 
 void loop() {
@@ -17,6 +17,5 @@ void loop() {
 //  int distance = s1.getDistance();
 //  Serial.println(distance);
 //  delay(500);
-  l_wheel.step();
-  r_wheel.step();
+  rotateWheels(&l_wheel, &r_wheel);
 }
