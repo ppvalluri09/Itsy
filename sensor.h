@@ -22,7 +22,6 @@ class Sensor {
 
 		int getDistance();
 		unsigned int getDuration();
-		int getAngle(int distance);
 };
 
 
@@ -43,7 +42,3 @@ int Sensor::getDistance() {
 	int distance = duration / 29 / 2;
 	return distance;
 }
-
-// int getAngle(int distance) {
-	
-// }
