@@ -18,7 +18,7 @@ class Wheel {
 			this->pin2 = 9;
 			this->pin3 = 10;
 			this->pin4 = 11;
-			this->steps_per_rev = 200;
+			this->steps_per_rev = 32;
 			stepper = new Stepper(this->steps_per_rev, this->pin1, this->pin2, this->pin3, this->pin4);
 			this->rpm = 10;
 			(*stepper).setSpeed(this->rpm);
@@ -38,14 +38,21 @@ class Wheel {
 		void setSpeed(int);
 		void incrementSpeed(int);
 		void updateRPM(int);
+		void step();
 };
 
 void Wheel::setSpeed(int rpm) {
 	this->rpm = rpm;
 	(*stepper).setSpeed(this->rpm);
+	this->step();
+}
+
+void Wheel::step() {
+	(*stepper).step(this->steps_per_rev);
 }
 
 void Wheel::incrementSpeed(int delta) {
 	this->rpm = this->rpm + delta;
 	(*stepper).setSpeed(this->rpm);
+	this->step();
 }
