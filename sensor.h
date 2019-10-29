@@ -43,3 +43,7 @@ int Sensor::getDistance() {
 	int distance = duration / 29 / 2;
 	return distance;
 }
+
+// int getAngle(int distance) {
+	
+// }
