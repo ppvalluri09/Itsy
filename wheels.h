@@ -51,13 +51,31 @@ void Wheel::step(int steps) {
 }
 
 void Wheel::incrementSpeed(int delta) {
-	this->rpm = this->rpm + delta;
-	(*stepper).setSpeed(this->rpm);
+	(*stepper).setSpeed(this->rpm + delta);
 }
 
-void rotateWheels(Wheel *w1, Wheel *w2) {
-	for (int i = 0; i < 2000; i++) {
-		w1->step(1);
-		w2->step(1);
+void rotateWheels(Wheel *w1, Wheel *w2, Sensor *s_left, Sensor *s_right) {
+	for (int i = 0; i < 400; i++) {
+		int dist_left = s_left->getDistance();
+		int dist_right = s_right->getDistance();
+		Serial.println(dist_right);
+		Serial.println(dist_left);
+
+		if (dist_left >= 50 && dist_right >= 50) {
+			for (int i = 0; i < 100; i++) {
+				w1->step(1);
+				w2->step(1);
+			}
+		} else if (dist_left < 50) {
+			for (int i = 0; i < 100; i++) {
+				w1->step(1);
+				w2->step(0);
+			}
+		} else if (dist_right < 50) {
+			for (int i = 0; i < 100; i++) {
+				w1->step(0);
+				w2->step(1);
+			}
+		}
 	}
 }

@@ -13,7 +13,7 @@ class Sensor {
 			pinMode(this->ECHO_PIN, INPUT);
 		}
 
-		Sensor(const unsigned int TRIG_PIN, const unsigned int ECHO_PIN) {
+		Sensor(unsigned int TRIG_PIN, unsigned int ECHO_PIN) {
 			this->TRIG_PIN = TRIG_PIN;
 			this->ECHO_PIN = ECHO_PIN;
 			pinMode(this->TRIG_PIN, OUTPUT);
@@ -42,4 +42,3 @@ int Sensor::getDistance() {
 	int distance = duration / 29 / 2;
 	return distance;
 }
-
